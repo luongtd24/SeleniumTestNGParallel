@@ -12,7 +12,6 @@ public class CustomerTest extends BaseTest {
     DashboardPage dashboardPage;
     CustomerPage customerPage;
 
-
     @Test
     public void addNewCuscomerSucces() {
         loginPage = new LoginPage();
@@ -33,4 +32,5 @@ public class CustomerTest extends BaseTest {
         customerPage = dashboardPage.clickMenuCustomers();
         customerPage.searchInfoCompany("LTD");
     }
+    
 }

@@ -2,6 +2,7 @@ package luongtd.Bai26_ParallelExcution_POM.testcases;
 
 import luongtd.Bai26_ParallelExcution_POM.pages.LoginPage;
 import luongtd.common.BaseTest;
+import luongtd.helper.ExcelHelper;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
@@ -13,21 +14,28 @@ public class LoginTest extends BaseTest {
         //Khoi tao doi tuong class LoginPage de truyen gia tri driver tu BaseTest
         //De class LoginPage nhan duoc gia tri driver thi moi thuc thi cac ham trong class page duoc
         loginPage = new LoginPage();
-        loginPage.loginCRM("admin@example.com", "123456");
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/testdata/DataTest.xlsx", "Sheet1");
+        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 1));
         loginPage.verifyLoginSuccess();
     }
 
     @Test
     public void testLoginCRM_EmailInvalid() {
         loginPage = new LoginPage();
-        loginPage.loginCRM("admin123@example.com", "123456");
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/testdata/DataTest.xlsx", "Sheet2");
+
+        loginPage.loginCRM(excelHelper.getCellData("email", 1), excelHelper.getCellData("password", 1));
         loginPage.verifyLoginFail();
     }
 
     @Test
     public void testLoginCRM_PasswordInvalid() {
         loginPage = new LoginPage();
-        loginPage.loginCRM("admin@example.com", "1234456");
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/testdata/DataTest.xlsx", "Sheet2");
+        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 2));
         loginPage.verifyLoginFail();
     }
 }

@@ -51,9 +51,10 @@ public class CustomerPage extends BaseTest {
         WebUI.assertContains(WebUI.getElementText(headerCustomer), "Customers Summary", "Khong vao dung trang Customer");
     }
 
-    public void inputDateCustomer(String companyName) {
+    public void inputDataCustomer(String companyName) {
         WebUI.setText(inputCompany, companyName);
-        WebUI.setText(inputVatNumber, "1254");
+        WebUI.setText(inputVatNumber, "123456789");
+        //WebUI.setText(inputPhone);
         WebUI.setText(inputPhone, "123456789");
         WebUI.setText(inputWebsite, "http://lancsnet.com");
         WebUI.clickElement(dropdownGroups);

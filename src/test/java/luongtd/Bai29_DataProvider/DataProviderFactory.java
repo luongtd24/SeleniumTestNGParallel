@@ -36,7 +36,7 @@ public class DataProviderFactory {
     @DataProvider(name = "dataFromExcelMultipleRow", parallel = true)
     public Object[][] dataFromExcelMultipleRow() {
         ExcelHelper excelHelper = new ExcelHelper();
-        Object[][] data = excelHelper.getDataHashTable("src/test/resources/testdata/DataTest.xlsx", "Sheet1", 2, 3);
+        Object[][] data = excelHelper.getDataHashTable("src/test/resources/testdata/DataTest.xlsx", "Sheet3", 1, 3);
         System.out.println("Login data from excel" + data);
         return data;
     }

@@ -51,22 +51,22 @@ public class CustomerPage extends BaseTest {
         WebUI.assertContains(WebUI.getElementText(headerCustomer), "Customers Summary", "Khong vao dung trang Customer");
     }
 
-    public void inputDataCustomer(String companyName) {
+    public void inputDataCustomer(String companyName, String vatNumber, String phone, String website, String groups, String address, String city, String state, String zipCode) {
         WebUI.setText(inputCompany, companyName);
-        WebUI.setText(inputVatNumber, "123456789");
+        WebUI.setText(inputVatNumber, vatNumber);
         //WebUI.setText(inputPhone);
-        WebUI.setText(inputPhone, "123456789");
-        WebUI.setText(inputWebsite, "http://lancsnet.com");
+        WebUI.setText(inputPhone, phone);
+        WebUI.setText(inputWebsite, website);
         WebUI.clickElement(dropdownGroups);
-        WebUI.setText(inputSearchGroups, "Silver");
+        WebUI.setText(inputSearchGroups, groups);
         WebUI.sleep(1);
         //driver.findElement(inputSearchGroups).sendKeys(Keys.ENTER);
         WebUI.setKey(inputSearchGroups, Keys.ENTER);
         WebUI.clickElement(dropdownGroups);
-        WebUI.setText(inputAddress, "Me Linh");
-        WebUI.setText(inputCity, "Ha Noi");
-        WebUI.setText(inputState, "Manchester");
-        WebUI.setText(inputZipCode, "254862");
+        WebUI.setText(inputAddress, address);
+        WebUI.setText(inputCity, city);
+        WebUI.setText(inputState, state);
+        WebUI.setText(inputZipCode, zipCode);
         WebUI.clickElement(buttonSaveCustomer);
     }
 
@@ -75,6 +75,7 @@ public class CustomerPage extends BaseTest {
         //driver.findElement(searchCustomer).sendKeys(Keys.ENTER);
         WebUI.setKey(searchCustomer, Keys.ENTER);
         String nameCompanySearch = "//a[normalize-space()='" + companySummary + "'][1]";
+        //String nameCompanySearch = "(//a[contains(text(),'" + companySummary + "')])[1]";
         WebUI.clickElement(nameCompanySearch);
         WebUI.sleep(1);
         //return new ProfileCustomerPage(driver);

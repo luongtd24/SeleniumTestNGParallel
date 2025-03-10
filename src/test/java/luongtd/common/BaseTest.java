@@ -1,11 +1,13 @@
 package luongtd.common;
 
 import luongtd.drives.DriverManager;
+import luongtd.helper.CaptureHelper;
 import luongtd.helper.PropertiHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -20,7 +22,7 @@ public class BaseTest {
     @Parameters({"browser"})
     public void createBrowser(@Optional("chrome") String browserName) {
         //WebDriver driver = setBrowser(browserName);
-        //lay gia tri tu file Properties
+        //lay gia tri tu file Propertie
         PropertiHelper.loadAllFiles();
         WebDriver driver = setBrowser(PropertiHelper.getValue("browser"));
         DriverManager.setDriver(driver); //gan gia tri driver vao trong ThreadLocal
@@ -48,7 +50,13 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeBrowser() {
+    public void closeBrowser(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            CaptureHelper.captureScreenshot(result.getName());
+        }
+        //Stop record video
+        CaptureHelper.stopRecord();
+
         DriverManager.quit();
     }
 }

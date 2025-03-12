@@ -1,4 +1,4 @@
-package luongtd.Bai29_DataProvider;
+package luongtd.dataprovider;
 
 import luongtd.helper.ExcelHelper;
 import org.testng.annotations.DataProvider;

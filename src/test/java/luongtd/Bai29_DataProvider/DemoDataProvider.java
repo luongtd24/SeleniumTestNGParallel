@@ -1,5 +1,6 @@
 package luongtd.Bai29_DataProvider;
 
+import luongtd.dataprovider.DataProviderFactory;
 import org.testng.annotations.Test;
 
 import java.util.Hashtable;

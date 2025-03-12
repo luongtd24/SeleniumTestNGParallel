@@ -1,22 +1,19 @@
 package luongtd.common;
 
 import luongtd.drives.DriverManager;
-import luongtd.helper.CaptureHelper;
 import luongtd.helper.PropertiHelper;
+import luongtd.listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
+@Listeners(TestListener.class)
 public class BaseTest {
-
 
     @BeforeMethod
     @Parameters({"browser"})
@@ -51,12 +48,11 @@ public class BaseTest {
 
     @AfterMethod
     public void closeBrowser(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            CaptureHelper.captureScreenshot(result.getName());
-        }
-        //Stop record video
-        CaptureHelper.stopRecord();
-
+//        if (ITestResult.FAILURE == result.getStatus()) {
+//            CaptureHelper.captureScreenshot(result.getName());
+//        }
+//        //Stop record video
+//        CaptureHelper.stopRecord();
         DriverManager.quit();
     }
 }

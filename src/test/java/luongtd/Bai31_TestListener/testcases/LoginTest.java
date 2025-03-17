@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
         loginPage.loginCRM(excelHelper.getCellData("email", 1), excelHelper.getCellData("password", 1));
         loginPage.verifyLoginFail();
     }
-
+ 
     @Test
     public void testLoginCRM_PasswordInvalid() {
         loginPage = new LoginPage();

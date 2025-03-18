@@ -3,6 +3,7 @@ package luongtd.listeners;
 import com.aventstack.extentreports.Status;
 import luongtd.helper.CaptureHelper;
 import luongtd.helper.PropertiHelper;
+import luongtd.reports.AllureReportManager;
 import luongtd.reports.ExtentReportManager;
 import luongtd.reports.ExtentTestManager;
 import luongtd.utils.LogUtils;
@@ -59,6 +60,10 @@ public class TestListener implements ITestListener {
         ExtentTestManager.addScreenshot(result.getName());
         ExtentTestManager.logMessage(Status.FAIL, result.getThrowable().toString());
         ExtentTestManager.logMessage(Status.FAIL, result.getName() + " is failed.");
+
+        //Allure Report
+        AllureReportManager.saveTextLog(result.getName() + " is failed.");
+        AllureReportManager.saveScreenshotPNG();
     }
 
     @Override

@@ -1,7 +1,9 @@
 package luongtd;
 
 import com.aventstack.extentreports.Status;
+import io.qameta.allure.Step;
 import luongtd.drives.DriverManager;
+import luongtd.reports.AllureReportManager;
 import luongtd.reports.ExtentTestManager;
 import luongtd.utils.LogUtils;
 import org.openqa.selenium.By;
@@ -34,6 +36,7 @@ public class WebUI {
         }
     }
 
+    @Step("Open URL: {0}")
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
@@ -64,6 +67,7 @@ public class WebUI {
         }
     }
 
+    @Step("Click element: {0}")
     public static void clickElement(String by) {
         waitForElementClickable(By.xpath(by));
         sleep(STEP_TIME);
@@ -71,6 +75,7 @@ public class WebUI {
         LogUtils.info("click element " + by);
     }
 
+    @Step("Click element {0} with timeout {timeout} ")
     public static void clickElement(By by, int timeout) {
         waitForElementClickable(by, timeout);
         highLightElement(by);
@@ -81,6 +86,7 @@ public class WebUI {
 
     }
 
+    @Step("Click element: {0}")
     public static void clickElement(By by) {
 
         waitForElementClickable(by);
@@ -91,7 +97,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.INFO, "Click on element " + by);
     }
 
-
+    @Step("Set Text: {1} on element: {0}")
     public static void setText(String by, String value) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIME_OUT));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(by)));
@@ -100,6 +106,7 @@ public class WebUI {
         LogUtils.info("Set Text" + value + "on element" + by);
     }
 
+    @Step("Set Text: {1} on element: {0}")
     public static void setText(By by, String value) {
         waitForElementVisible(by);
         highLightElement(by);
@@ -109,6 +116,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.INFO, "Set text " + value + " on element " + by);
     }
 
+    @Step("Set Text: {1} on element: {0} with timeout {2}")
     public static void setText(By by, String value, int timeout) {
         waitForElementVisible(by, timeout);
         highLightElement(by);
@@ -262,6 +270,7 @@ public class WebUI {
         Assert.assertTrue(check, message);
     }
 
+    @Step("Get text of element: {0}")
     public static String getElementText(By by) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
@@ -270,6 +279,7 @@ public class WebUI {
         LogUtils.info("Get text of element " + by + " ==> " + text);
         ExtentTestManager.logMessage(Status.PASS, "Get text of element " + by);
         ExtentTestManager.logMessage(Status.INFO, "==> Text: " + getWebElement(by).getText());
+        AllureReportManager.saveTextLog("==>> " + text);
         return text; //Trả về một giá trị kiểu String
     }
 

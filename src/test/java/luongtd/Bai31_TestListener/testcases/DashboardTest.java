@@ -18,7 +18,7 @@ public class DashboardTest extends BaseTest {
         loginPage = new LoginPage();
         ExcelHelper excelHelper = new ExcelHelper();
         excelHelper.setExcelFile("src/test/resources/testdata/DataTest.xlsx", "Sheet1");
-        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 1));
+        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 2));
         //dashboardPage = loginPage.loginCRM("admin@example.com", "123456");
         loginPage.verifyLoginSuccess();
 
@@ -33,7 +33,7 @@ public class DashboardTest extends BaseTest {
         loginPage = new LoginPage();
         ExcelHelper excelHelper = new ExcelHelper();
         excelHelper.setExcelFile("src/test/resources/testdata/DataTest.xlsx", "Sheet1");
-        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 1));
+        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 2));
         loginPage.verifyLoginSuccess();
         dashboardPage.clickOptionProfile();
 
@@ -44,7 +44,7 @@ public class DashboardTest extends BaseTest {
         loginPage = new LoginPage();
         ExcelHelper excelHelper = new ExcelHelper();
         excelHelper.setExcelFile("/src/test/resources/testdata/DataTest.xlsx", "Sheet1");
-        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 1));
+        loginPage.loginCRM(excelHelper.getCellData("email", 2), excelHelper.getCellData("password", 2));
         loginPage.verifyLoginSuccess();
 
         loginPage = dashboardPage.logOut();

@@ -50,7 +50,7 @@ public class LoginPage {
 
     public void verifyLoginFail() {
         Assert.assertTrue(DriverManager.getDriver().findElement(errorMessage).isDisplayed(), "Error Message not Displayed");
-        Assert.assertEquals(WebUI.getElementText(errorMessage), "Invalid email or password123", "Content of Error Message not Displayed");
+        Assert.assertEquals(WebUI.getElementText(errorMessage), "Invalid email or password", "Content of Error Message not Displayed");
     }
 
     public void verifyRedirectLoginPage() {
